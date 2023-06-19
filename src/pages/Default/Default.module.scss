@@ -1,0 +1,210 @@
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+
+    overflow: hidden;
+
+    .header {
+        .logo-wrapper {
+            position: absolute;
+            // top: 0px;
+            top: -100%;
+            left: 20px;
+            z-index: 5;
+
+            max-width: 200px;
+            max-height: 200px;
+
+            &.showLogo {
+                animation: animateShowLogo 0.5s ease forwards;
+            }
+            @keyframes animateShowLogo {
+                from {
+                    top: -100%;
+                }
+                to {
+                    top: 0px;
+                }
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+
+                object-fit: contain;
+            }
+        }
+
+        .header-right {
+            position: absolute;
+            // top: 30px;
+            right: 30px;
+            z-index: 5;
+
+            display: flex;
+            align-items: center;
+            color: var(--color-default);
+            font-weight: 700;
+            animation: animateShowHeaderRight 0.5s ease forwards;
+
+            @keyframes animateShowHeaderRight {
+                from {
+                    top: -100%;
+                }
+                to {
+                    top: 30px;
+                }
+            }
+
+            .option {
+                position: relative;
+            }
+
+            .timerCounter {
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            & > div {
+                margin: 0 5px;
+                padding: 7px 10px;
+                border-radius: 10px;
+                background-color: var(--color-bgd-100);
+            }
+            & > span {
+                margin: 0 7px;
+                margin-top: 2px;
+                cursor: pointer;
+                width: 39px;
+                height: 39px;
+            }
+            & > .noBg {
+                background-color: unset;
+            }
+        }
+    }
+
+    .sidebar {
+        position: absolute;
+        top: 50%;
+        right: 2%;
+        z-index: 5;
+        transform: translateY(-50%);
+
+        padding: 10px;
+        border-radius: 10px;
+        background-color: var(--color-bgd-100);
+        opacity: 0;
+        animation: animateShowSideBar 0.5s ease forwards;
+
+        @keyframes animateShowSideBar {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .sidebar-item {
+            padding: 5px;
+            cursor: pointer;
+
+            &:hover::before {
+                content: attr(data);
+                position: absolute;
+                right: 120%;
+                color: var(--color-default);
+                font-weight: 700;
+                padding: 10px;
+                border-radius: 10px;
+
+                background-color: var(--color-bgd-100);
+            }
+
+            &:first-child {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .wrapper {
+        .header {
+            .header-right {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                width: 100vw;
+
+                @keyframes animateShowHeaderRight {
+                    from {
+                        bottom: -100%;
+                    }
+                    to {
+                        bottom: 30px;
+                    }
+                }
+
+                .music-controls,
+                .timerCounter {
+                    padding: 7px 4px;
+                }
+                .timerCounter {
+                    width: 104px;
+                }
+                .music-controls {
+                    width: 60px;
+                }
+
+                .fullscreen {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        .header {
+            .logo-wrapper {
+                // top: 0px;
+                left: -10px;
+                z-index: 5;
+
+                max-width: 140px;
+                max-height: 140px;
+
+                @keyframes animateShowLogo {
+                    from {
+                        top: -100%;
+                    }
+                    to {
+                        top: 10px;
+                    }
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    cursor: pointer;
+
+                    object-fit: contain;
+                }
+            }
+
+            .header-right {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+}

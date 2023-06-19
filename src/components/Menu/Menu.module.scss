@@ -1,0 +1,95 @@
+.wrapper {
+    .option {
+        display: none;
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+
+        &.show {
+            display: flex !important;
+        }
+
+        li {
+            padding: 5px 10px;
+            margin: 0 10px;
+
+            font-size: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+
+            text-decoration: unset;
+
+            a {
+                text-decoration: none;
+                color: var(--color-default);
+            }
+
+            button {
+                position: relative;
+
+                padding: 10px 20px;
+                font-weight: 600;
+                font-size: 1.6rem;
+                border-radius: 20px;
+
+                border: none;
+                outline: none;
+
+                color: var(--color-default) !important;
+                background-color: var(--color-bgd-100);
+
+                cursor: pointer;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    border-radius: 10px;
+                    padding: 2px;
+                    background: linear-gradient(45deg, #f3a952, #f2501d);
+                    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                    -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .wrapper {
+        ul {
+            li {
+                margin: 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        .option {
+            display: block;
+            cursor: pointer;
+        }
+        ul {
+            display: none;
+
+            position: absolute;
+            top: 80%;
+            right: 5%;
+
+            flex-direction: column;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: rgb(33, 32, 32);
+            border: 1px solid var(--color-border);
+
+            transition: all linear 0.2s;
+        }
+    }
+}

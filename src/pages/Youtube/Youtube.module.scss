@@ -1,0 +1,84 @@
+.wrapper {
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    .input-wrapper {
+        position: absolute;
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        border-radius: 10px;
+
+        width: 400px;
+        height: 40px;
+        background-color: var(--color-bgd-100);
+        overflow: hidden;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        input {
+            width: 80%;
+            height: 50%;
+            padding: 5px;
+            font-size: 1.4rem;
+
+            color: var(--color-default);
+            outline: var(--color-border);
+            border: 1px solid var(--color-border);
+            background-color: var(--color-border);
+
+            border-radius: 5px;
+
+            &::placeholder {
+                /* Chrome, Firefox, Opera, Safari 10.1+ */
+                color: var(--color-secondary);
+                opacity: 1; /* Firefox */
+            }
+
+            &:-ms-input-placeholder {
+                /* Internet Explorer 10-11 */
+                color: var(--color-secondary);
+            }
+
+            &::-ms-input-placeholder {
+                /* Microsoft Edge */
+                color: var(--color-secondary);
+            }
+        }
+
+        button {
+            cursor: pointer;
+
+            width: 10%;
+            height: 100%;
+
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-default);
+
+            margin-left: 10px;
+            outline: none;
+            border: none;
+            background-color: transparent;
+        }
+    }
+
+    .iframe {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        .input-wrapper {
+            width: 300px;
+        }
+    }
+}

@@ -1,0 +1,96 @@
+.quote-wrapper {
+    position: absolute;
+    bottom: 20%;
+    left: 100px;
+    z-index: 5;
+    cursor: move;
+    user-select: none;
+
+    color: var(--color-default);
+    animation: showQuote ease 0.5s forwards;
+
+    @keyframes showQuote {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .timer {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+
+        width: 500px;
+        max-width: 500px;
+
+        .timer-count {
+            position: relative;
+
+            .close {
+                position: absolute;
+                top: -70px;
+                right: -40px;
+                padding: 2px;
+                cursor: pointer;
+
+                color: var(--color-default);
+                font-size: 60px;
+                font-weight: 700;
+
+                &:hover {
+                    color: var(--color-border);
+                }
+            }
+        }
+    }
+    .quote {
+        font-style: italic;
+        font-size: 17px;
+        font-weight: 600;
+        width: 500px;
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .quote-wrapper {
+        position: absolute;
+        bottom: 20%;
+        left: 5%;
+        z-index: 1;
+
+        .timer {
+            .timer-count {
+                .close {
+                    position: absolute;
+                    top: -70px;
+                    right: 0px;
+                    padding: 2px;
+                    cursor: pointer;
+
+                    color: var(--color-default);
+                    font-size: 60px;
+                    font-weight: 700;
+
+                    &:hover {
+                        color: var(--color-border);
+                    }
+                }
+            }
+        }
+
+        .timer,
+        .quote {
+            width: 350px;
+            max-width: 350px;
+        }
+    }
+}
