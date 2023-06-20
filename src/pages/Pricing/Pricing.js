@@ -3,10 +3,49 @@ import styles from './Pricing.module.scss';
 
 import { apple, harvard, netflix, queen, twitter, yale, um } from '../../assets/iconInPremiumPage/iconPremiumPage';
 
+import { db } from '../../firebase';
+import { UseAuthContext } from '../../context/UserAuth';
+import { useNavigate } from 'react-router-dom';
+import { UseOpenModal } from '../../context/OpenModalProvider';
+import { doc, updateDoc } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+
 const cx = classNames.bind(styles);
 
 function Pricing() {
-    const handleClickGoPremium = (e) => {};
+    const { setIsOpenModal } = UseOpenModal();
+    const { user } = UseAuthContext();
+    const nav = useNavigate();
+
+    const [object, setObject] = useState('developers');
+
+    useEffect(() => {
+        const arr = ['developers', 'workers', 'students', 'engineers'];
+        let i = 0;
+
+        const intervalChangeObject = setInterval(() => {
+            if (i < 4) {
+                setObject(arr[i++]);
+            } else {
+                i = 0;
+            }
+        }, 1000);
+
+        return () => clearInterval(intervalChangeObject);
+    }, []);
+
+    const handleClickGoPremium = (e) => {
+        if (user && user.email) {
+            const userRef = doc(db, 'users', `${user.email}`);
+            updateDoc(userRef, {
+                premium: true,
+            });
+            alert('Successfully updated premium');
+        } else {
+            nav('/default');
+            setIsOpenModal(true);
+        }
+    };
 
     const checkedSvg = (
         <svg
@@ -61,7 +100,7 @@ function Pricing() {
             </div>
             <div className={cx('used')}>
                 <p>
-                    Used by <span className={cx('cl-prm')}>developers</span> at
+                    Used by <span className={cx('cl-prm')}>{object}</span> at
                 </p>
                 <div className={cx('img-wrapper')}>
                     <img alt="icon" src={apple} />

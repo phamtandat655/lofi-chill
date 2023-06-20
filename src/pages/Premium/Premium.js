@@ -5,7 +5,7 @@ import logo from '../../assets/image/logo.gif';
 import { RainSound } from '../../assets/sounds/sound';
 
 import { Link } from 'react-router-dom';
-import { memo, useEffect, useRef, useState } from 'react';
+import { Suspense, lazy, memo, useEffect, useRef, useState } from 'react';
 
 import TimerCounter from '../../components/TimerCounter/TimerCounter';
 import ButtonSwitchDayNight from '../../components/ButtonSwitchDayNight/ButtonSwitchDayNight';
@@ -16,7 +16,8 @@ import OptionModal from '../../components/OptionModal/OptionModal';
 import MusicControls from '../../components/MusicControls/MusicControls';
 import { useDispatch, useSelector } from 'react-redux';
 import { CHANGE_MUTEALL, CHANGE_RAIN } from '../../actions/actions';
-import Background from '../../components/Background/Background';
+import Loader from '../../components/Loader/Loader';
+const Background = lazy(() => import('../../components/Background/Background'));
 
 const cx = classNames.bind(styles);
 
@@ -64,7 +65,9 @@ function Premium() {
                 setIsOpenOption(false);
             }}
         >
-            <Background />
+            <Suspense fallback={<Loader />}>
+                <Background />
+            </Suspense>
             <div
                 className={cx('cityrain')}
                 data="Rain"

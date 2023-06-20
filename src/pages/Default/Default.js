@@ -5,7 +5,7 @@ import { FullScreen, Option, Mixer, BgOption } from '../../assets/icons/icons';
 import logo from '../../assets/image/logo.gif';
 
 import { Link } from 'react-router-dom';
-import { memo, useState } from 'react';
+import { Suspense, lazy, memo, useState } from 'react';
 
 import TimerCounter from '../../components/TimerCounter/TimerCounter';
 import Quote from '../../components/Quote/Quote';
@@ -13,7 +13,8 @@ import MixerModal from '../../components/MixerModal/MixerModal';
 import ScenesModal from '../../components/ScenesModal/ScenesModal';
 import OptionModal from '../../components/OptionModal/OptionModal';
 import MusicControls from '../../components/MusicControls/MusicControls';
-import Background from '../../components/Background/Background';
+import Loader from '../../components/Loader/Loader';
+const Background = lazy(() => import('../../components/Background/Background'));
 
 const cx = classNames.bind(styles);
 
@@ -31,7 +32,9 @@ function Default() {
                 setIsOpenOption(false);
             }}
         >
-            <Background />
+            <Suspense fallback={<Loader />}>
+                <Background />
+            </Suspense>
             <div className={cx('header')}>
                 <div className={cx('logo-wrapper', { showLogo: true })}>
                     <Link to="/home">

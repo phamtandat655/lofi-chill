@@ -21,9 +21,6 @@ function HomeFooter() {
                         <Link to="/home/contact">Contact</Link>
                     </li>
                     <li>
-                        <Link to="/home/FAQ">FAQ</Link>
-                    </li>
-                    <li>
                         <Link to="/home/pricing">Pricing</Link>
                     </li>
                 </ul>

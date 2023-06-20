@@ -6,19 +6,23 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
+
 import GlobalGifProvider from './context/GlobalGifProvider';
 import OpenModalProvider from './context/OpenModalProvider';
+import UserAuth from './context/UserAuth';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
-                <OpenModalProvider>
-                    <GlobalGifProvider>
-                        <App />
-                    </GlobalGifProvider>
-                </OpenModalProvider>
+                <UserAuth>
+                    <OpenModalProvider>
+                        <GlobalGifProvider>
+                            <App />
+                        </GlobalGifProvider>
+                    </OpenModalProvider>
+                </UserAuth>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>,

@@ -3,9 +3,25 @@
     text-align: center;
 
     position: fixed;
-    top: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+
     z-index: 50;
 }
+.loader-wrapper__img {
+    width: 250px;
+    height: auto;
+
+    object-fit: cover;
+}
+
 @media screen and (max-width: 1024px) {
     .loader-wrapper {
         top: 100px;
