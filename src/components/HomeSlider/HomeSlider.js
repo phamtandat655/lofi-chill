@@ -59,16 +59,20 @@ function HomeSlider() {
                     className={cx('swiper')}
                 >
                     <SwiperSlide>
-                        <img alt="slide" src={isNight === true ? bookcfNight : bookcfDay} />
+                        <img alt="slide" className={cx({ hide: isNight === false })} src={bookcfNight} />
+                        <img alt="slide" className={cx({ hide: isNight === true })} src={bookcfDay} />
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img alt="slide" src={isNight === true ? cafeNight : cafeDay} />
+                        <img alt="slide" className={cx({ hide: isNight === false })} src={cafeNight} />
+                        <img alt="slide" className={cx({ hide: isNight === true })} src={cafeDay} />
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img alt="slide" src={isNight === true ? plantsRoomNight : plantsRoomDay} />
+                        <img alt="slide" className={cx({ hide: isNight === false })} src={plantsRoomNight} />
+                        <img alt="slide" className={cx({ hide: isNight === true })} src={plantsRoomDay} />
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img alt="slide" src={isNight === true ? trainNight : trainDay} />
+                        <img alt="slide" className={cx({ hide: isNight === false })} src={trainNight} />
+                        <img alt="slide" className={cx({ hide: isNight === true })} src={trainDay} />
                     </SwiperSlide>
                 </Swiper>
             </div>

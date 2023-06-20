@@ -61,6 +61,10 @@
                 height: 100%;
                 position: relative;
 
+                .hide {
+                    display: none;
+                }
+
                 .arrow {
                     position: absolute;
                     top: 10px;

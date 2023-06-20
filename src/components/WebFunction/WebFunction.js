@@ -36,7 +36,12 @@ function WebFunction({ title, note, img, gif, reverse }) {
             <div className={cx('image-wrapper', { 'inside-day-gif': gif })}>
                 {gif === true ? (
                     <div className={cx('rain-wrapper')}>
-                        <img src={isRain === true ? insideDayRain : insideDay} alt="the-perfect-playlist" />
+                        <img src={insideDay} className={cx({ hide: isRain === true })} alt="the-perfect-playlist" />
+                        <img
+                            src={insideDayRain}
+                            className={cx({ hide: isRain === false })}
+                            alt="the-perfect-playlist"
+                        />
                         <div
                             className={cx('circle', { clicked: isRain })}
                             onClick={(e) => {

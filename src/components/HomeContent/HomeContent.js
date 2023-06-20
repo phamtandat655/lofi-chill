@@ -3,15 +3,21 @@ import styles from './HomeContent.module.scss';
 import { TypeAnimation } from 'react-type-animation';
 
 import { Link } from 'react-router-dom';
-import WebFunction from '../WebFunction/WebFunction';
 import perfectPlaylistImg from '../../assets/home/perfect-playlist-illustration-desktop-3x.png';
+import WebFunction from '../WebFunction/WebFunction';
 import HomeSlider from '../HomeSlider/HomeSlider';
 import { useEffect, useState } from 'react';
+
+import scene1 from '../../assets/home/screenshot/app-screenshot-1.png';
+import scene2 from '../../assets/home/screenshot/app-screenshot-2.png';
+import scene3 from '../../assets/home/screenshot/app-screenshot-3.png';
+import scene4 from '../../assets/home/screenshot/app-screenshot-4.png';
 
 const cx = classNames.bind(styles);
 
 function HomeContent() {
     const [figures, setFigures] = useState(0);
+    const [indexShowBg, setIndexShowBg] = useState(1);
 
     useEffect(() => {
         let speed = 500;
@@ -29,7 +35,19 @@ function HomeContent() {
             }
         }, 5);
 
-        return () => clearInterval(counter);
+        let indexImage = 1;
+        const changeBg = setInterval(() => {
+            setIndexShowBg(indexImage);
+            indexImage++;
+            if (indexImage === 5) {
+                indexImage = 1;
+            }
+        }, 3000);
+
+        return () => {
+            clearInterval(counter);
+            clearInterval(changeBg);
+        };
     }, []);
 
     return (
@@ -58,7 +76,12 @@ function HomeContent() {
             <div className={cx('web-review-wrapper')}>
                 <div className={cx('web-review')}>
                     <div className={cx('bg-browser')}></div>
-                    <div className={cx('slider')}></div>
+                    <div className={cx('slider')}>
+                        <img alt="scene" src={scene1} className={cx({ showing: indexShowBg === 1 })} />
+                        <img alt="scene" src={scene2} className={cx({ showing: indexShowBg === 2 })} />
+                        <img alt="scene" src={scene3} className={cx({ showing: indexShowBg === 3 })} />
+                        <img alt="scene" src={scene4} className={cx({ showing: indexShowBg === 4 })} />
+                    </div>
                 </div>
             </div>
             <div className={cx('Notice')}>Bringing calm productivity to over {figures} users every month</div>

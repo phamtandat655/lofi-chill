@@ -7,7 +7,7 @@ import { db } from '../../firebase';
 import { UseAuthContext } from '../../context/UserAuth';
 import { useNavigate } from 'react-router-dom';
 import { UseOpenModal } from '../../context/OpenModalProvider';
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(styles);
@@ -16,6 +16,17 @@ function Pricing() {
     const { setIsOpenModal } = UseOpenModal();
     const { user } = UseAuthContext();
     const nav = useNavigate();
+    const [isPremium, setIsPremium] = useState(false);
+
+    useEffect(() => {
+        if (user?.email) {
+            onSnapshot(doc(db, 'users', `${user.email}`), (doc) => {
+                setIsPremium(doc.data().premium);
+            });
+        } else {
+            setIsPremium(false);
+        }
+    }, [user]);
 
     const [object, setObject] = useState('developers');
 
@@ -36,11 +47,17 @@ function Pricing() {
 
     const handleClickGoPremium = (e) => {
         if (user && user.email) {
-            const userRef = doc(db, 'users', `${user.email}`);
-            updateDoc(userRef, {
-                premium: true,
-            });
-            alert('Successfully updated premium');
+            if (isPremium) {
+                alert("You already have premium in this account! Let's try it!");
+                nav('/premium');
+            } else {
+                const userRef = doc(db, 'users', `${user.email}`);
+                updateDoc(userRef, {
+                    premium: true,
+                });
+                alert("Successfully updated premium! Let's try it");
+                nav('/premium');
+            }
         } else {
             nav('/default');
             setIsOpenModal(true);
