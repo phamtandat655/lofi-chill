@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './HomeSlider.module.scss';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 import {
     bookcfDay,
@@ -76,4 +76,4 @@ function HomeSlider() {
     );
 }
 
-export default HomeSlider;
+export default memo(HomeSlider);

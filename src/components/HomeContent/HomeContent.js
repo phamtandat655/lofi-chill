@@ -6,10 +6,32 @@ import { Link } from 'react-router-dom';
 import WebFunction from '../WebFunction/WebFunction';
 import perfectPlaylistImg from '../../assets/home/perfect-playlist-illustration-desktop-3x.png';
 import HomeSlider from '../HomeSlider/HomeSlider';
+import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 function HomeContent() {
+    const [figures, setFigures] = useState(0);
+
+    useEffect(() => {
+        let speed = 500;
+        let from = 0;
+        let to = 150000;
+        let step = to / speed;
+
+        const counter = setInterval(() => {
+            from += step;
+            if (from > to) {
+                clearInterval(counter);
+                setFigures(to);
+            } else {
+                setFigures(Math.ceil(from));
+            }
+        }, 5);
+
+        return () => clearInterval(counter);
+    }, []);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('background-img')}>
@@ -39,7 +61,7 @@ function HomeContent() {
                     <div className={cx('slider')}></div>
                 </div>
             </div>
-            <div className={cx('Notice')}>Bringing calm productivity to over 150,000 users every month</div>
+            <div className={cx('Notice')}>Bringing calm productivity to over {figures} users every month</div>
             <div className={cx('web-function')}>
                 <WebFunction
                     img={perfectPlaylistImg}
