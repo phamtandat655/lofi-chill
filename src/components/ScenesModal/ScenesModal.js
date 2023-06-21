@@ -8,7 +8,6 @@ import { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { CHANGE_INSIDE } from '../../actions/actions';
 
-import { Coffee1, Forest1, BathroomBG, Ramen1, Train1, Winter1 } from '../../assets/backgrounds/default/defaultBg';
 import {
     Coffee1Pic,
     BathroomBGPic,
@@ -30,22 +29,22 @@ function ScenesModal() {
     if (pathname === '/default') {
         return (
             <div className={cx('wrapper', 'default')}>
-                <div className={cx('scene')} onClick={(e) => setGif(Forest1)}>
+                <div className={cx('scene')} onClick={(e) => setGif('Forest1')}>
                     <img alt="scene" src={Forest1Pic} />
                 </div>
-                <div className={cx('scene')} onClick={(e) => setGif(Coffee1)}>
+                <div className={cx('scene')} onClick={(e) => setGif('Coffee1')}>
                     <img alt="scene" src={Coffee1Pic} />
                 </div>
-                <div className={cx('scene')} onClick={(e) => setGif(BathroomBG)}>
+                <div className={cx('scene')} onClick={(e) => setGif('BathroomBG')}>
                     <img alt="scene" src={BathroomBGPic} />
                 </div>
-                <div className={cx('scene')} onClick={(e) => setGif(Ramen1)}>
+                <div className={cx('scene')} onClick={(e) => setGif('Ramen1')}>
                     <img alt="scene" src={Ramen1Pic} />
                 </div>
-                <div className={cx('scene')} onClick={(e) => setGif(Train1)}>
+                <div className={cx('scene')} onClick={(e) => setGif('Train1')}>
                     <img alt="scene" src={Train1Pic} />
                 </div>
-                <div className={cx('scene')} onClick={(e) => setGif(Winter1)}>
+                <div className={cx('scene')} onClick={(e) => setGif('Winter1')}>
                     <img alt="scene" src={Winter1Pic} />
                 </div>
             </div>

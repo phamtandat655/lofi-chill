@@ -18,6 +18,8 @@ import {
 import window from '../../assets/home/inside-day.gif';
 import windowRain from '../../assets/home/inside-day-rain.gif';
 
+import { Coffee1, Forest1, BathroomBG, Ramen1, Train1, Winter1 } from '../../assets/backgrounds/default/defaultBg';
+
 import { UseGif } from '../../context/GlobalGifProvider';
 
 const cx = classNames.bind(styles);
@@ -25,7 +27,7 @@ const cx = classNames.bind(styles);
 function Background() {
     const { pathname } = useLocation();
     const { gif } = UseGif();
-    const [bg, setBg] = useState(outside);
+    const [bg, setBg] = useState('outside');
 
     const rain = useSelector((state) => state.rain);
     const inSide = useSelector((state) => state.inSide);
@@ -34,37 +36,37 @@ function Background() {
     useEffect(() => {
         if (inSide === 'inWindow') {
             if (rain === true) {
-                setBg(windowRain);
+                setBg('windowRain');
             } else {
-                setBg(window);
+                setBg('window');
             }
         } else {
             if (inSide === false) {
                 if (rain === false) {
                     if (night === false) {
-                        setBg(outside);
+                        setBg('outside');
                     } else {
-                        setBg(outsideNight);
+                        setBg('outsideNight');
                     }
                 } else {
                     if (night === false) {
-                        setBg(outsideRain);
+                        setBg('outsideRain');
                     } else {
-                        setBg(outsideNightRain);
+                        setBg('outsideNightRain');
                     }
                 }
             } else {
                 if (rain === false) {
                     if (night === false) {
-                        setBg(inside);
+                        setBg('inside');
                     } else {
-                        setBg(insideNight);
+                        setBg('insideNight');
                     }
                 } else {
                     if (night === false) {
-                        setBg(insideRain);
+                        setBg('insideRain');
                     } else {
-                        setBg(insideNightRain);
+                        setBg('insideNightRain');
                     }
                 }
             }
@@ -75,7 +77,12 @@ function Background() {
         return (
             <div className={cx('wrapper')}>
                 <div className={cx('gif-wrapper')}>
-                    <img alt="gif" src={gif} />
+                    <img alt="gif" src={Coffee1} className={cx({ show: gif === 'Coffee1' })} />
+                    <img alt="gif" src={Forest1} className={cx({ show: gif === 'Forest1' })} />
+                    <img alt="gif" src={BathroomBG} className={cx({ show: gif === 'BathroomBG' })} />
+                    <img alt="gif" src={Ramen1} className={cx({ show: gif === 'Ramen1' })} />
+                    <img alt="gif" src={Train1} className={cx({ show: gif === 'Train1' })} />
+                    <img alt="gif" src={Winter1} className={cx({ show: gif === 'Winter1' })} />
                 </div>
             </div>
         );
@@ -83,7 +90,16 @@ function Background() {
         return (
             <div className={cx('wrapper')}>
                 <div className={cx('gif-wrapper')}>
-                    <img alt="gif" src={bg} />
+                    <img alt="gif" src={outside} className={cx({ show: bg === 'outside' })} />
+                    <img alt="gif" src={outsideRain} className={cx({ show: bg === 'outsideRain' })} />
+                    <img alt="gif" src={outsideNight} className={cx({ show: bg === 'outsideNight' })} />
+                    <img alt="gif" src={outsideNightRain} className={cx({ show: bg === 'outsideNightRain' })} />
+                    <img alt="gif" src={inside} className={cx({ show: bg === 'inside' })} />
+                    <img alt="gif" src={insideRain} className={cx({ show: bg === 'insideRain' })} />
+                    <img alt="gif" src={insideNight} className={cx({ show: bg === 'insideNight' })} />
+                    <img alt="gif" src={insideNightRain} className={cx({ show: bg === 'insideNightRain' })} />
+                    <img alt="gif" src={window} className={cx({ show: bg === 'window' })} />
+                    <img alt="gif" src={windowRain} className={cx({ show: bg === 'windowRain' })} />
                 </div>
             </div>
         );
