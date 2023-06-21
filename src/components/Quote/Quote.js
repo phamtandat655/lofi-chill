@@ -24,6 +24,7 @@ function Quote({ handleSetIsShowQuote }) {
         'March',
         'April',
         'May',
+        'June',
         'July',
         'August',
         'September',
