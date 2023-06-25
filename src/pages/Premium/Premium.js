@@ -33,7 +33,7 @@ function Premium() {
     const dispatch = useDispatch();
     const muteAll = useSelector((state) => state.muteAll);
     const rain = useSelector((state) => state.rain);
-    const inSide = useSelector((state) => state.inSide);
+    const background = useSelector((state) => state.bg);
 
     useEffect(() => {
         if (rainSoundRef && rainSoundRef.current) {
@@ -118,7 +118,7 @@ function Premium() {
                     <div className={cx('timerCounter')} onClick={(e) => setIsShowQuote(!isShowQuote)}>
                         <TimerCounter />
                     </div>
-                    {inSide !== 'inWindow' && (
+                    {background !== 'inWindow' && background !== 'inForest-in' && background !== 'inForest-out' && (
                         <div className={cx('noBg')}>
                             <ButtonSwitchDayNight />
                         </div>

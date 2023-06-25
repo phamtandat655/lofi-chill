@@ -2,7 +2,7 @@ const initialState = {
     nameSong: 'Chilly',
     night: false,
     rain: false,
-    inSide: false,
+    bg: 'outCf',
     muteAll: false,
 };
 const rootReducer = (state = initialState, action) => {
@@ -25,21 +25,10 @@ const rootReducer = (state = initialState, action) => {
                 rain: !state.rain,
             };
         }
-        case 'CHANGE_INSIDE': {
-            let isInSideCafe;
-            if (action.payload === 'in') {
-                isInSideCafe = true;
-            } else {
-                isInSideCafe = false;
-            }
-
-            if (action.payload === 'inWindow') {
-                isInSideCafe = 'inWindow';
-            }
-
+        case 'CHANGE_BG': {
             return {
                 ...state,
-                inSide: isInSideCafe,
+                bg: action.payload,
             };
         }
         case 'CHANGE_MUTEALL': {

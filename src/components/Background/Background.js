@@ -14,6 +14,10 @@ import {
     outsideRain,
     outsideNight,
     outsideNightRain,
+    forestInsideSun,
+    forestInsideRain,
+    forestOutsideRain,
+    forestOutsideSun,
 } from '../../assets/backgrounds/premium/premiumBg';
 import window from '../../assets/home/inside-day.gif';
 import windowRain from '../../assets/home/inside-day-rain.gif';
@@ -30,18 +34,18 @@ function Background() {
     const [bg, setBg] = useState('outside');
 
     const rain = useSelector((state) => state.rain);
-    const inSide = useSelector((state) => state.inSide);
+    const background = useSelector((state) => state.bg);
     const night = useSelector((state) => state.night);
 
     useEffect(() => {
-        if (inSide === 'inWindow') {
+        if (background === 'inWindow') {
             if (rain === true) {
                 setBg('windowRain');
             } else {
                 setBg('window');
             }
-        } else {
-            if (inSide === false) {
+        } else if (background === 'inCf' || background === 'outCf') {
+            if (background === 'outCf') {
                 if (rain === false) {
                     if (night === false) {
                         setBg('outside');
@@ -70,8 +74,22 @@ function Background() {
                     }
                 }
             }
+        } else if (background === 'inForest-in' || background === 'inForest-out') {
+            if (background === 'inForest-out') {
+                if (rain === false) {
+                    setBg('forestOutsideSun');
+                } else {
+                    setBg('forestOutsideRain');
+                }
+            } else {
+                if (rain === false) {
+                    setBg('forestInsideSun');
+                } else {
+                    setBg('forestInsideRain');
+                }
+            }
         }
-    }, [rain, inSide, night]);
+    }, [rain, background, night]);
 
     if (pathname === '/default') {
         return (
@@ -100,6 +118,10 @@ function Background() {
                     <img alt="gif" src={insideNightRain} className={cx({ show: bg === 'insideNightRain' })} />
                     <img alt="gif" src={window} className={cx({ show: bg === 'window' })} />
                     <img alt="gif" src={windowRain} className={cx({ show: bg === 'windowRain' })} />
+                    <img alt="gif" src={forestInsideSun} className={cx({ show: bg === 'forestInsideSun' })} />
+                    <img alt="gif" src={forestInsideRain} className={cx({ show: bg === 'forestInsideRain' })} />
+                    <img alt="gif" src={forestOutsideSun} className={cx({ show: bg === 'forestOutsideSun' })} />
+                    <img alt="gif" src={forestOutsideRain} className={cx({ show: bg === 'forestOutsideRain' })} />
                 </div>
             </div>
         );

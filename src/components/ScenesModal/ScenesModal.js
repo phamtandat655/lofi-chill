@@ -4,9 +4,11 @@ import styles from './ScenesModal.module.scss';
 import cafein from '../../assets/image/cafe-in.png';
 import cafeout from '../../assets/image/cafe-out.png';
 import window from '../../assets/image/window.png';
+import forestInside from '../../assets/image/forest_inside.png';
+import forestOutside from '../../assets/image/forest_outside.png';
 import { memo } from 'react';
 import { useDispatch } from 'react-redux';
-import { CHANGE_INSIDE } from '../../actions/actions';
+import { CHANGE_BG } from '../../actions/actions';
 
 import {
     Coffee1Pic,
@@ -52,14 +54,20 @@ function ScenesModal() {
     } else {
         return (
             <div className={cx('wrapper')}>
-                <div className={cx('scene')} onClick={(e) => dispatch(CHANGE_INSIDE('out'))}>
+                <div className={cx('scene')} onClick={(e) => dispatch(CHANGE_BG('outCf'))}>
                     <img alt="scene" src={cafeout} />
                 </div>
-                <div className={cx('scene')} onClick={(e) => dispatch(CHANGE_INSIDE('in'))}>
+                <div className={cx('scene')} onClick={(e) => dispatch(CHANGE_BG('inCf'))}>
                     <img alt="scene" src={cafein} />
                 </div>
-                <div className={cx('scene')} onClick={(e) => dispatch(CHANGE_INSIDE('inWindow'))}>
+                <div className={cx('scene')} onClick={(e) => dispatch(CHANGE_BG('inWindow'))}>
                     <img alt="scene" src={window} />
+                </div>
+                <div className={cx('scene')} onClick={(e) => dispatch(CHANGE_BG('inForest-in'))}>
+                    <img alt="scene" src={forestInside} />
+                </div>
+                <div className={cx('scene')} onClick={(e) => dispatch(CHANGE_BG('inForest-out'))}>
+                    <img alt="scene" src={forestOutside} />
                 </div>
             </div>
         );
