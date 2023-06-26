@@ -13,7 +13,6 @@ function Quote({ handleSetIsShowQuote }) {
     const arrQuote = [
         'Not everything that is faced can be changed, but nothing can be changed until it is faced',
         'When you want to give up, remember why you started',
-        'When you want to give up, remember why you started',
         'Nothing is too small to know, and nothing too big to attempt',
         'Know your limits, but never stop trying to exceed them',
     ];
@@ -76,7 +75,7 @@ function Quote({ handleSetIsShowQuote }) {
                         </span>
                     </span>
                 </div>
-                <div className={cx('quote')}>"{arrQuote[Math.floor(Math.random() * 5)]}"</div>
+                <div className={cx('quote')}>"{arrQuote[Math.floor(Math.random() * 4)]}"</div>
             </div>
         </Draggable>
     );
